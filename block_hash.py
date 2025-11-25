@@ -13,29 +13,15 @@ block = p.getblock(blockhash)
 transactions = block['tx']
 block_value = 0
 
-version = int(block['version'])
+version = hex(int(block['version']))[2:]
 prev_block_hash = block['previousblockhash']
 merkle_root = block['merkleroot']
-time = int(block['time'])
+time = hex(int(block['time']))[2:]
 bits = block['bits']
-nonce = int(block['nonce'])
+nonce = hex(int(block['nonce']))[2:]
 
-print(version)
-print(prev_block_hash)
-print(merkle_root)
-print(hex(time)[2:])
-print(bits)
-print(hex(nonce)[2:])
-
-
-header = (
-    version.to_bytes(byteorder='little') +
-    bytes.fromhex(prev_block_hash)[::-1] +
-    bytes.fromhex(merkle_root)[::-1] +
-    time.to_bytes(byteorder='little') +
-    bytes.fromhex(bits)[::-1] +
-    nonce.to_bytes(byteorder='little')
-)
-
-block_hash = h.sha256(h.sha256(header).digest()).digest()[::-1].hex()
-print(block_hash)
+header_bin = unhexlify(version + prev_block_hash + merkle_root + time + bits + nonce)
+hash_out = h.sha256(h.sha256(header_bin).digest()).digest()
+print(hexlify(hash_out).decode("utf-8"))
+print(hexlify(hash_out[::-1]).decode("utf-8"))
+print(hash_out)
