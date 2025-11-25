@@ -27,6 +27,18 @@ print(time)
 print(bits)
 print(nonce)
 
+print(
+    f"""
+version: {version},
+prev_block_hash: {prev_block_hash},
+merkle_root: {merkle_root},
+time: {time},
+bits: {bits},
+nonce: {nonce}
+
+"""
+)
+
 header = (
         version.to_bytes(4, 'little')
         + bytes.fromhex(prev_block_hash)[::-1]
