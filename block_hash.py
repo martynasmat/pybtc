@@ -29,7 +29,8 @@ print(nonce)
 
 header = (
         version.to_bytes(8, 'little')
-        + prev_block_hash + merkle_root
+        + bytes.fromhex(prev_block_hash)[::-1]
+        + bytes.fromhex(merkle_root)[::-1]
         + time.to_bytes(4, 'little')
         + bits.to_bytes(4, 'little')
         + nonce.to_bytes(4, 'little')
