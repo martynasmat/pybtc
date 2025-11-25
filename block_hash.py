@@ -33,10 +33,9 @@ header = (
     bytes.fromhex(prev_block_hash)[::-1] +
     bytes.fromhex(merkle_root)[::-1] +
     struct.pack("<L", time) +
-    struct.pack("<L", bits) +
+    bytes.fromhex(bits)[::-1] +
     struct.pack("<L", nonce)
 )
 
-header_bin = unhexlify(version + prev_block_hash + merkle_root + hex(nonce)[2:] + hex(time)[2:] + bits)
-hash_val = h.sha256(h.sha256(header_bin).digest()).digest()
-print(hexlify(hash_val).decode('utf-8'))
+block_hash = h.sha256(h.sha256(header).digest()).digest()[::-1].hex()
+print(block_hash)
