@@ -14,10 +14,10 @@ block_value = 0
 version = block['version']
 prev_block_hash = block['previousblockhash']
 merkle_root = block['merkleroot']
-nonce = block['nonce']
 time = block['time']
-bits = block['difficulty']
+bits = block['bits']
+nonce = block['nonce']
 
-header_bin = unhexlify(hex(version) + prev_block_hash + merkle_root + hex(nonce) + hex(time) + hex(bits))
+header_bin = unhexlify(hex(version) + prev_block_hash + merkle_root + hex(nonce) + hex(time) + bits)
 hash_val = h.sha256(h.sha256(header_bin).digest()).digest()
 print(hexlify(hash_val).decode('utf-8'))
