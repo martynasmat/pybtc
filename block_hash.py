@@ -28,14 +28,14 @@ print(bits)
 print(nonce)
 
 header = (
-        version.to_bytes(8, 'little')
+        version.to_bytes(4, 'little')
         + bytes.fromhex(prev_block_hash)[::-1]
         + bytes.fromhex(merkle_root)[::-1]
-        + time.to_bytes(8, 'little')
+        + time.to_bytes(4, 'little')
         + bytes.fromhex(bits)[::-1]
-        + nonce.to_bytes(8, 'little')
+        + nonce.to_bytes(4, 'little')
     )
 hash_out = h.sha256(h.sha256(header).digest()).digest()
-print(hash_out.decode("utf-8"))
+print(hexlify(hash_out).decode("utf-8"))
 print(hexlify(hash_out[::-1]).decode("utf-8"))
 print(hash_out)
