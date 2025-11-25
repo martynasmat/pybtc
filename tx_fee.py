@@ -1,13 +1,24 @@
 from bitcoin.rpc import RawProxy
+from decimal import Decimal
 
-# Create a connection to local Bitcoin Core node
 p = RawProxy()
 
-# Transaction ID
-txid = "4410c8d14ff9f87ceeed1d65cb58e7c7b2422b2d7529afc675208ce2ce09ed7d"
+txid = input("Enter transaction hash: ")
 
-# First, retrieve the raw transaction in hex
-raw_tx = p.getrawtransaction(txid)
+tx = p.getrawtransaction(txid)
+tx = p.decoderawtransaction(tx)
 
-decoded_tx = p.decoderawtransaction(raw_tx)
+vout_sum = sum([i["value"] for i in tx["vout"]])
 
+vin_sum = 0
+for vin in tx["vin"]:
+    prev = p.getrawtransaction(vin["txid"])
+    prev = p.decoderawtransaction(prev)
+    prev_vout = prev["vout"][vin["vout"]]
+    vin_sum += prev_vout["value"]
+
+fee = vin_sum - vout_sum
+
+print(f"in: {vin_sum}")
+print(f"out: {vout_sum}")
+print(f"fee: {fee} BTC / {fee * 100000000} SATS")
