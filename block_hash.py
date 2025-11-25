@@ -36,6 +36,6 @@ header = (
         + nonce.to_bytes(8, 'little')
     )
 hash_out = h.sha256(h.sha256(header).digest()).digest()
-print(hexlify(hash_out).decode("utf-8"))
+print(hash_out.decode("utf-8"))
 print(hexlify(hash_out[::-1]).decode("utf-8"))
 print(hash_out)
