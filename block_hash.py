@@ -1,3 +1,5 @@
+import struct
+
 from bitcoin.rpc import RawProxy
 import hashlib as h
 from binascii import unhexlify, hexlify
@@ -24,6 +26,16 @@ print(merkle_root)
 print(hex(time)[2:])
 print(bits)
 print(hex(nonce)[2:])
+
+
+header = (
+    struct.pack("<L", version) +
+    bytes.fromhex(prev_block_hash)[::-1] +
+    bytes.fromhex(merkle_root)[::-1] +
+    struct.pack("<L", time) +
+    struct.pack("<L", bits) +
+    struct.pack("<L", nonce)
+)
 
 header_bin = unhexlify(version + prev_block_hash + merkle_root + hex(nonce)[2:] + hex(time)[2:] + bits)
 hash_val = h.sha256(h.sha256(header_bin).digest()).digest()
