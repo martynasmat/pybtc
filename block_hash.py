@@ -31,9 +31,9 @@ header = (
         version.to_bytes(8, 'little')
         + bytes.fromhex(prev_block_hash)[::-1]
         + bytes.fromhex(merkle_root)[::-1]
-        + time.to_bytes(4, 'little')
-        + bits.to_bytes(4, 'little')
-        + nonce.to_bytes(4, 'little')
+        + time.to_bytes(8, 'little')
+        + bytes.fromhex(bits)[::-1]
+        + nonce.to_bytes(8, 'little')
     )
 hash_out = h.sha256(h.sha256(header).digest()).digest()
 print(hexlify(hash_out).decode("utf-8"))
