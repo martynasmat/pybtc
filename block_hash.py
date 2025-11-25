@@ -5,7 +5,7 @@ import hashlib as h
 from binascii import unhexlify, hexlify
 
 p = RawProxy()
-blockheight = input("Enter block height: ")
+blockheight = int(input("Enter block height: "))
 blockhash = p.getblockhash(blockheight)
 block = p.getblock(blockhash)
 
