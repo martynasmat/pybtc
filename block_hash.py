@@ -20,6 +20,13 @@ time = hex(int(block['time']))[2:]
 bits = block['bits']
 nonce = hex(int(block['nonce']))[2:]
 
+print(version)
+print(prev_block_hash)
+print(merkle_root)
+print(time)
+print(bits)
+print(nonce)
+
 header_bin = unhexlify(version + prev_block_hash + merkle_root + time + bits + nonce)
 hash_out = h.sha256(h.sha256(header_bin).digest()).digest()
 print(hexlify(hash_out).decode("utf-8"))
