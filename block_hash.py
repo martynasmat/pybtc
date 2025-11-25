@@ -13,7 +13,7 @@ block = p.getblock(blockhash)
 transactions = block['tx']
 block_value = 0
 
-version = block['versionHex']
+version = block['version']
 prev_block_hash = block['previousblockhash']
 merkle_root = block['merkleroot']
 time = block['time']
