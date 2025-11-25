@@ -22,12 +22,12 @@ nonce = int(block['nonce'])
 
 print(
 f"""
-version:           {version},
-prev_block_hash:   {prev_block_hash},
-merkle_root:       {merkle_root},
-time:              {time},
-bits:              {bits},
-nonce:             {nonce}
+version                          {version}
+prev_block_hash                  {prev_block_hash}
+merkle_root                      {merkle_root}
+time                             {time}
+bits                             {bits}
+nonce                            {nonce}
 """
 )
 
@@ -40,5 +40,5 @@ header = (
         + nonce.to_bytes(4, 'little')
     )
 hash_out = h.sha256(h.sha256(header).digest()).digest()
-print(f"Calculated block hash: {hash_out[::-1].hex()}")
-print(f"RPC API block hash:    {hash_out[::-1].hex()}")
+print(f"Calculated block hash    {hash_out[::-1].hex()}")
+print(f"RPC API block hash       {hash_out[::-1].hex()}")
