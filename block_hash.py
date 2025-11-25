@@ -29,14 +29,12 @@ print(nonce)
 
 print(
     f"""
-version: {version},
-prev_block_hash: {prev_block_hash},
-merkle_root: {merkle_root},
-time: {time},
-bits: {bits},
-nonce: {nonce}
-
-"""
+    version: {version},
+    prev_block_hash: {prev_block_hash},
+    merkle_root: {merkle_root},
+    time: {time},
+    bits: {bits},
+    nonce: {nonce}"""
 )
 
 header = (
