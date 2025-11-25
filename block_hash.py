@@ -40,5 +40,5 @@ header = (
         + nonce.to_bytes(4, 'little')
     )
 hash_out = h.sha256(h.sha256(header).digest()).digest()
-print(f"Calculated block hash    {hash_out[::-1].hex()}")
-print(f"RPC API block hash       {hash_out[::-1].hex()}")
+print(f"Calculated block hash       {hash_out[::-1].hex()}")
+print(f"RPC API block hash          {hash_out[::-1].hex()}")
