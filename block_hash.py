@@ -21,9 +21,9 @@ nonce = block['nonce']
 print(version)
 print(prev_block_hash)
 print(merkle_root)
-print(time)
+print(hex(time))
 print(bits)
-print(nonce)
+print(hex(nonce))
 
 header_bin = unhexlify(version + prev_block_hash + merkle_root + hex(nonce) + hex(time) + bits)
 hash_val = h.sha256(h.sha256(header_bin).digest()).digest()
