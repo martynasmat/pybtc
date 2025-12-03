@@ -7,7 +7,7 @@ blockhash = p.getblockhash(blockheight)
 block = p.getblock(blockhash)
 
 version = int(block['version'])
-prev_block_hash = block['previousblockhash'] if blockheight > 0 else "00" * 64
+prev_block_hash = block['previousblockhash'] if blockheight > 0 else "00" * 32
 merkle_root = block['merkleroot']
 time = int(block['time'])
 bits = block['bits']
