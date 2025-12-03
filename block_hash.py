@@ -6,11 +6,8 @@ blockheight = int(input("Enter block height: "))
 blockhash = p.getblockhash(blockheight)
 block = p.getblock(blockhash)
 
-transactions = block['tx']
-block_value = 0
-
 version = int(block['version'])
-prev_block_hash = block['previousblockhash']
+prev_block_hash = block['previousblockhash'] if blockheight > 0 else "00" * 64
 merkle_root = block['merkleroot']
 time = int(block['time'])
 bits = block['bits']
