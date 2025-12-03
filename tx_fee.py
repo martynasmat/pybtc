@@ -1,5 +1,4 @@
 from bitcoin.rpc import RawProxy
-from decimal import Decimal
 
 p = RawProxy()
 

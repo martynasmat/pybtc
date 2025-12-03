@@ -1,15 +1,11 @@
-import struct
-
 from bitcoin.rpc import RawProxy
 import hashlib as h
-from binascii import unhexlify, hexlify
 
 p = RawProxy()
 blockheight = int(input("Enter block height: "))
 blockhash = p.getblockhash(blockheight)
 block = p.getblock(blockhash)
 
-# Element tx contains the list of all transaction IDs in the block
 transactions = block['tx']
 block_value = 0
 
